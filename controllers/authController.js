@@ -41,6 +41,7 @@ class AuthController {
 
 	async ping(req, res, next) {
 		try {
+			console.log("pong");
 			res.json('pong');
 		} catch (e) {
 			console.log(e);
