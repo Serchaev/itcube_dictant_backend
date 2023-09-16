@@ -77,6 +77,16 @@ class AuthController {
 		}
 	}
 
+	async getUserData(req, res, next) {
+		console.log("INFO '/getUserData' POST");
+		try {
+			const user = req.user;
+			res.json(user);
+		} catch (e) {
+			console.log(e);
+		}
+	}
+
 	async ping(req, res, next) {
 		try {
 			console.log("pong");

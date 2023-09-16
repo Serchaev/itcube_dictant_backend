@@ -22,7 +22,9 @@ router.post("/logout", controller.logout);
 
 router.post("/refresh", controller.refresh);
 
-router.get("/getUsers", authMiddleware, controller.getUsers);
+router.get("/getUsers", controller.getUsers);
+
+router.get("/getUserData", authMiddleware, controller.getUserData);
 
 router.get("/ping", controller.ping);
 
