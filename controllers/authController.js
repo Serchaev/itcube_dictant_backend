@@ -51,6 +51,7 @@ class AuthController {
 	async refresh(req, res, next) {
 		try {
 			console.log("INFO '/refresh' POST");
+			console.log(req.body);
 			const { refreshToken } = req.body;
 			console.log("req.body", refreshToken)
 			const authData = await authService.refresh(refreshToken);
@@ -81,7 +82,17 @@ class AuthController {
 		console.log("INFO '/getUserData' POST");
 		try {
 			const user = req.user;
-			res.json(user);
+			console.log("user", user)
+			const userData = await userModel.findOne({ _id: user.id });
+			console.log("userData", userData)
+			res.json({
+				id: userData._id,
+				first_name: userData.first_name,
+				last_name: userData.last_name,
+				age: userData.age,
+				school: userData.school,
+				login: userData.login
+			});
 		} catch (e) {
 			console.log(e);
 		}

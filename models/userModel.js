@@ -7,6 +7,7 @@ const userSchema = new mongoose.Schema({
 	school: { type: String, required: true },
 	login: { type: String, unique: true, required: true },
 	password: { type: String, required: true },
+	is_complitedTest: { type: Boolean, default: false }
 });
 
 module.exports = mongoose.model("User", userSchema);
