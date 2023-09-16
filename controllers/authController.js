@@ -1,23 +1,37 @@
 // const User = require("../models/userModel.js");
 // const Role = require("../models/roleModel.js");
 const Token = require("../models/tokenModel.js");
+const userModel = require('../models/userModel.js');
 // const bcrypt = require("bcryptjs");
 // const { validationResult } = require("express-validator");
 // const jwt = require("jsonwebtoken");
 // const fs = require("fs");
+const authService = require('../service/authService.js');
+const { validationResult } = require("express-validator");
 
 class AuthController {
 	async registration(req, res, next) {
+		console.log("INFO '/registration' POST");
+		const errors = validationResult(req);
+		if (!errors.isEmpty()) {
+			return res.status(400).json({ message: "Ошибка при регистрации", errors });
+		}
 		try {
-
+			const { first_name, last_name, age, school, login, password } = req.body;
+			const authData = await authService.registration(first_name, last_name, age, school, login, password);
+			return res.json(authData);
 		} catch (e) {
 			console.log(e);
+			res.status(409).json({ errors: [`${e}`,] });
 		}
 	}
 
 	async login(req, res, next) {
 		try {
-
+			console.log("INFO '/login' POST");
+			const { login, password } = req.body;
+			const authData = await authService.login(login, password);
+			return res.json(authData);
 		} catch (e) {
 			console.log(e);
 		}
@@ -25,7 +39,10 @@ class AuthController {
 
 	async logout(req, res, next) {
 		try {
-
+			console.log("INFO '/logout' POST");
+			const { refreshToken } = req.body;
+			const authData = await authService.logout(refreshToken);
+			res.json(authData);
 		} catch (e) {
 			console.log(e);
 		}
@@ -33,7 +50,28 @@ class AuthController {
 
 	async refresh(req, res, next) {
 		try {
+			console.log("INFO '/refresh' POST");
+			const { refreshToken } = req.body;
+			console.log("req.body", refreshToken)
+			const authData = await authService.refresh(refreshToken);
+			res.json(authData);
 
+		} catch (e) {
+			console.log(e);
+			res.status(401).json({ errors: ["Ошибка авторизации, перезайдите в аккаунт или попробуйте позже"] });
+		}
+	}
+
+	async getUsers(req, res, next) {
+		console.log("INFO '/getUsers' POST");
+		try {
+			const users = await userModel.find();
+			const resUsers = users.map(e => {
+				return {
+					"login": e.login
+				}
+			});
+			res.json(resUsers);
 		} catch (e) {
 			console.log(e);
 		}

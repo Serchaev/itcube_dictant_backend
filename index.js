@@ -10,6 +10,8 @@ const mongoose = require('mongoose');
 // const taskRouter = require("./routers/taskRouter.js");
 // const accountableRouter = require("./routers/accountableRouter.js");
 const authRouter = require("./routers/authRouter.js");
+const testRouter = require("./routers/testRouter.js");
+const addRouter = require("./routers/addRouter.js");
 
 
 const PORT = process.env.PORT || 8000;
@@ -27,7 +29,8 @@ app.use(cors());
 // app.use(express.static("static"));
 
 // app.use("/api/v1", positionRouter);
-// app.use("/api/v1", employeeRouter);
+app.use("/api/v1", testRouter);
+app.use("", addRouter);
 
 
 app.use("/auth", authRouter);
@@ -36,7 +39,7 @@ app.use("/auth", authRouter);
 async function startApp() {
 	try {
 		await mongoose.connect(DB_URL, { useUnifiedTopology: true, useNewUrlParser: true }).then(() => { console.log("db connected") })
-		const server = app.listen(PORT, () => console.log(`Server started: http://:${PORT}/`));
+		const server = app.listen(PORT, () => console.log(`Server started`));
 	}
 	catch (e) {
 		console.log(e);
