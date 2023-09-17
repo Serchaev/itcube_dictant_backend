@@ -33,7 +33,7 @@ class TestController {
 
 		} catch (e) {
 			console.log(e);
-			res.status(409).json({ errors: [`${e}`,] });
+			res.status(409).send({ errors: [`${e}`,] });
 		}
 	}
 
@@ -54,7 +54,7 @@ class TestController {
 			});
 
 
-			res.json("ok");
+			res.json(req.user);
 		} catch (e) {
 			console.log(e);
 		}
