@@ -17,8 +17,8 @@ class AuthController {
 			return res.status(400).json({ message: "Ошибка при регистрации", errors });
 		}
 		try {
-			const { first_name, last_name, age, school, phone_number, login, password } = req.body;
-			const authData = await authService.registration(first_name, last_name, age, school, phone_number, login, password);
+			const { first_name, last_name, age, school, email, phone_number, login, password } = req.body;
+			const authData = await authService.registration(first_name, last_name, age, school, email, phone_number, login, password);
 			return res.json(authData);
 		} catch (e) {
 			console.log(e);

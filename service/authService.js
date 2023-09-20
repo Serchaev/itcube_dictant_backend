@@ -5,13 +5,13 @@ const tokenService = require('./tokenService');
 const UserDto = require('../dtos/userDto');
 
 class AuthService {
-	async registration(first_name, last_name, age, school, phone_number, login, password) {
+	async registration(first_name, last_name, age, school, email, phone_number, login, password) {
 		const candidate = await userModel.findOne({ login });
 		if (candidate) {
 			throw new Error(`Пользователь с логином - ${login} уже существует`);
 		}
 		const hashPassword = bcrypt.hashSync(password, 7);
-		const user = await userModel({ first_name, last_name, age, school, phone_number, login, password: hashPassword });
+		const user = await userModel({ first_name, last_name, age, school, email, phone_number, login, password: hashPassword });
 		const userDto = new UserDto(user);
 		const tokens = await tokenService.generateTokens({ ...userDto });
 		await tokenService.saveToken(userDto.id, tokens.refreshToken);
