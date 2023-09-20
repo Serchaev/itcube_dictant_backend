@@ -34,6 +34,7 @@ class AuthController {
 			return res.json(authData);
 		} catch (e) {
 			console.log(e);
+			return res.status(403).json(e);
 		}
 	}
 
