@@ -9,7 +9,7 @@ const userSchema = new mongoose.Schema({
 	password: { type: String, required: true },
 	is_complited_test: { type: Boolean, default: false },
 	email: { type: String, default: false },
-	number_phone: { type: String, required: true },
+	phone_number: { type: String, required: true },
 });
 
 module.exports = mongoose.model("User", userSchema);

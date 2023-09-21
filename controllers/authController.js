@@ -36,11 +36,11 @@ class AuthController {
 			const authData = await authService.login(login, password);
 			return res.json(authData);
 		} catch (e) {
-			if (e.message.contains("Неверный пароль")){
+			if (e.message.contains("Неверный пароль")) {
 				return res.status(403).json(e);
 			}
 			return res.status(500).json(e);
-			
+
 		}
 	}
 
