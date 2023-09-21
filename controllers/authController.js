@@ -22,7 +22,10 @@ class AuthController {
 			return res.json(authData);
 		} catch (e) {
 			console.log(e);
-			res.status(409).json({ errors: [`${e}`,] });
+			if (e.message.contains('уже существует')) {
+				return res.status(409).json({ errors: [`${e}`,] });
+			}
+			return res.status(500).json(e);
 		}
 	}
 
@@ -33,8 +36,11 @@ class AuthController {
 			const authData = await authService.login(login, password);
 			return res.json(authData);
 		} catch (e) {
-			console.log(e);
-			return res.status(403).json(e);
+			if (e.message.contains("Неверный пароль")){
+				return res.status(403).json(e);
+			}
+			return res.status(500).json(e);
+			
 		}
 	}
 
@@ -92,7 +98,9 @@ class AuthController {
 				last_name: userData.last_name,
 				age: userData.age,
 				school: userData.school,
-				login: userData.login
+				login: userData.login,
+				number_phone: userData.number_phone,
+				is_complited_test: userData.is_complited_test
 			});
 		} catch (e) {
 			console.log(e);
