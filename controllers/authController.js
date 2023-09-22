@@ -82,6 +82,7 @@ class AuthController {
 			res.json(resUsers);
 		} catch (e) {
 			console.log(e);
+			return res.status(500).json(e);
 		}
 	}
 
@@ -100,10 +101,13 @@ class AuthController {
 				school: userData.school,
 				login: userData.login,
 				number_phone: userData.number_phone,
-				is_complited_test: userData.is_complited_test
+				is_complited_test: userData.is_complited_test,
+				email: userData.email,
+				phone_number: userData.phone_number
 			});
 		} catch (e) {
 			console.log(e);
+			return res.status(500).json(e);
 		}
 	}
 
