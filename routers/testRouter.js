@@ -12,4 +12,6 @@ router.get("/getQuestions", authMiddleware, controller.getQuestions);
 
 router.post("/submitAnswers", authMiddleware, controller.submitAnswers);
 
+router.get("/finishTest", authMiddleware, controller.finishTest);
+
 module.exports = router;

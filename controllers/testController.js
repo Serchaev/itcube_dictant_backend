@@ -4,6 +4,7 @@ const testModel = require('../models/testModel.js');
 const questionModel = require('../models/questionModel.js');
 const answerModel = require('../models/answerModel.js');
 const { text } = require('express');
+const userModel = require('../models/userModel.js');
 
 class TestController {
 	async getQuestions(req, res, next) {
@@ -55,6 +56,19 @@ class TestController {
 
 
 			res.json(req.user);
+		} catch (e) {
+			console.log(e);
+		}
+	}
+
+	async finishTest(req, res, next) {
+		console.log("INFO '/finishTest' GET");
+		try {
+			const id = req.user.id;
+			const user = await userModel.findById(id);
+			user.is_complited_test = true;
+			user.save();
+			res.json(user);
 		} catch (e) {
 			console.log(e);
 		}
