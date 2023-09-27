@@ -19,7 +19,7 @@ class TestController {
 				age = 14;
 			}
 
-			age = 7;
+			// age = 7;
 			const test = await testModel.findOne({ age_group: age }).populate('questions');
 			test.questions = test.questions.map(e => {
 				console.log(e);
