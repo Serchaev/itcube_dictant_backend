@@ -66,8 +66,10 @@ class TestController {
 		try {
 			const id = req.user.id;
 			const user = await userModel.findById(id);
-			const answers = await answerModel.find({student: id});
-			const count_correct_answers = 0
+			console.log(id);
+			const answers = await answerModel.find({ student: id });
+			console.log(answers);
+			let count_correct_answers = 0
 			answers.forEach(element => {
 				if (element.is_correct) {
 					count_correct_answers += 1
