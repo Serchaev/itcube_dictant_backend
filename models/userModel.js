@@ -10,6 +10,7 @@ const userSchema = new mongoose.Schema({
 	is_complited_test: { type: Boolean, default: false },
 	email: { type: String, default: false },
 	phone_number: { type: String, required: true },
+	scores: { type: Number, default: 0 },
 });
 
 module.exports = mongoose.model("User", userSchema);

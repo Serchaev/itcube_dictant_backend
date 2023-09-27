@@ -66,7 +66,17 @@ class TestController {
 		try {
 			const id = req.user.id;
 			const user = await userModel.findById(id);
+			const answers = await answerModel.find({student: id});
+			const count_correct_answers = 0
+			answers.forEach(element => {
+				if (element.is_correct) {
+					count_correct_answers += 1
+				}
+			});
+			let scores = 0;
+			scores = Math.round(count_correct_answers * 100 / 30);
 			user.is_complited_test = true;
+			user.scores = scores;
 			user.save();
 			res.json(user);
 		} catch (e) {

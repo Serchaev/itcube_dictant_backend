@@ -103,6 +103,7 @@ class AuthController {
 				login: userData.login,
 				number_phone: userData.number_phone,
 				is_complited_test: userData.is_complited_test,
+				scores: userData.scores,
 				email: userData.email,
 				phone_number: userData.phone_number
 			});
