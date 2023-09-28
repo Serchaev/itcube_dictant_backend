@@ -88,12 +88,46 @@ class AuthController {
 	}
 
 	async getUserData(req, res, next) {
-		console.log("INFO '/getUserData' POST");
+		console.log("INFO '/getUserData' GET");
 		try {
 			const user = req.user;
 			console.log("user", user)
 			const userData = await userModel.findOne({ _id: user.id });
 			console.log("userData", userData)
+			res.json({
+				id: userData._id,
+				first_name: userData.first_name,
+				last_name: userData.last_name,
+				age: userData.age,
+				school: userData.school,
+				login: userData.login,
+				number_phone: userData.number_phone,
+				is_complited_test: userData.is_complited_test,
+				scores: userData.scores,
+				email: userData.email,
+				phone_number: userData.phone_number
+			});
+		} catch (e) {
+			console.log(e);
+			return res.status(500).json(e);
+		}
+	}
+
+	async updateUserData(req, res, next) {
+		console.log("INFO '/updateUserData' PUT");
+		try {
+			const user = req.user;
+			console.log("user", user)
+			const { first_name, last_name, age, school, email, phone_number } = req.body;
+			const userData = await userModel.findOne({ _id: user.id });
+			console.log("userData", userData)
+			userData.first_name = first_name;
+			userData.last_name = last_name;
+			userData.age = age;
+			userData.school = school;
+			userData.email = email;
+			userData.phone_number = phone_number;
+			userData.save();
 			res.json({
 				id: userData._id,
 				first_name: userData.first_name,

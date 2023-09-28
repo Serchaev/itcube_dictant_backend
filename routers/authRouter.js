@@ -26,6 +26,8 @@ router.get("/getUsers", controller.getUsers);
 
 router.get("/getUserData", authMiddleware, controller.getUserData);
 
+router.put("/updateUserData", authMiddleware, controller.updateUserData);
+
 router.get("/ping", controller.ping);
 
 module.exports = router;
