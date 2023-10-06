@@ -16,8 +16,8 @@ const addRouter = require("./routers/addRouter.js");
 
 const PORT = process.env.PORT || 8000;
 // const IP_ADDRESS = process.env.IP_ADDRESS || "localhost";
-const DB_URL = process.env.DB_URL;
-// const DB_URL = "mongodb+srv://adminitcube:pupiladmin@cluster0.3hpnvqq.mongodb.net/?retryWrites=true&w=majority";
+// const DB_URL = process.env.DB_URL;
+const DB_URL = process.env.DB_URL || "mongodb+srv://adminitcube:pupiladmin@cluster0.3hpnvqq.mongodb.net/?retryWrites=true&w=majority";
 
 
 const app = express();
