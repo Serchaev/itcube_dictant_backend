@@ -42,7 +42,7 @@ app.get('/Certificates/:login', (req, res) => {
 
 	console.log(__dirname)
 	// Здесь вы можете создать путь к файлу на основе имени файла и отправить его клиенту.
-	const path = `./public/Certificates/${login}/certificate.png`;
+	const path = `${process.cwd()}/public/Certificates/${login}/certificate.png`;
 
 	console.log(path)
 	res.download(path);
