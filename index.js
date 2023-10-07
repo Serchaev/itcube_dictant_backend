@@ -33,7 +33,6 @@ app.use(express.static('public'));
 app.use("/api/v1", testRouter);
 app.use("", addRouter);
 
-
 app.use("/auth", authRouter);
 
 app.get('/Certificates/:login', (req, res) => {
