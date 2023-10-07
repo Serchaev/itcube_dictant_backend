@@ -1,12 +1,12 @@
 {
 	"builds": [
 		{
-			"src": "public/*",
-			"use": "@now/public"
-		},
-		{
 			"src": "index.js",
 			"use": "@vercel/node"
+		},
+		{
+			"src": "public/*",
+			"use": "@now/public"
 		}
 	],
 	"routes": [
