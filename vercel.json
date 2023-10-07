@@ -1,6 +1,10 @@
 {
 	"builds": [
 		{
+			"src": "public/*",
+			"use": "@now/public"
+		},
+		{
 			"src": "index.js",
 			"use": "@vercel/node"
 		}
