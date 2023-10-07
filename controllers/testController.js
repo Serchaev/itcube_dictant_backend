@@ -85,6 +85,16 @@ class TestController {
 			console.log(e);
 		}
 	}
+
+	async downloadCertificate(req, res, next) {
+		console.log("INFO '/downloadCertificate' GET");
+
+		const login = req.user.login;
+		const filePath = __dirname + '/Certificates/' + `${login}` + '/certificate.png'; // Путь к файлу в статическом каталоге
+		// res.download(filePath); // Отправить файл клиенту для скачивания
+		// res.json(filePath);
+		res.download(filePath);
+	}
 }
 
 
