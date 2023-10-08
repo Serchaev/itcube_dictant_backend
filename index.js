@@ -35,7 +35,7 @@ app.use("", addRouter);
 
 app.use("/auth", authRouter);
 
-app.get('/Certificates/:login', (req, res) => {
+app.get('/public/Certificates/:login', (req, res) => {
 	console.log('INFO /download GET')
 	// Получите параметр маршрута, который будет содержать имя файла.
 	const login = req.params.login;
