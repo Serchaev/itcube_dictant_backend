@@ -35,18 +35,18 @@ app.use("", addRouter);
 
 app.use("/auth", authRouter);
 
-app.get('/public/Certificates/:login', (req, res) => {
-	console.log('INFO /download GET')
-	// Получите параметр маршрута, который будет содержать имя файла.
-	const login = req.params.login;
+// app.get('/public/Certificates/:login', (req, res) => {
+// 	console.log('INFO /download GET')
+// 	// Получите параметр маршрута, который будет содержать имя файла.
+// 	const login = req.params.login;
 
-	console.log(process.cwd())
-	// Здесь вы можете создать путь к файлу на основе имени файла и отправить его клиенту.
-	const path = `./public/Certificates/${login}/certificate.png`;
+// 	console.log(process.cwd())
+// 	// Здесь вы можете создать путь к файлу на основе имени файла и отправить его клиенту.
+// 	const path = `./public/Certificates/${login}/certificate.png`;
 
-	console.log(path)
-	res.download(path);
-});
+// 	console.log(path)
+// 	res.download(path);
+// });
 
 async function startApp() {
 	try {
